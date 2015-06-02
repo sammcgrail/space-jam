@@ -1,14 +1,12 @@
 class Album
   attr_accessor :tracks
   attr_reader :id, :title, :artist
-
   def initialize(id, title, artist)
     @id = id
     @title = title
     @artist = artist
     @tracks = []
   end
-
   def build_tracklist_hash
     tracklist_hash = {}
     @tracks.each do |track_info|
@@ -18,7 +16,6 @@ class Album
     end
     tracklist_hash
   end
-
   def build_tracklist_string
     tracklist_string = ""
     build_tracklist_hash.each do |track_number, track_name|
@@ -26,12 +23,18 @@ class Album
     end
     tracklist_string   # make sure to return values in methods
   end
+
   # def sort_tracklist_hash
   #    come back after and sort
   # end
 
+  def get_duration_ms
+    #
+  end
 
-
+  def convert_duration
+    # convert duration_ms to min
+  end
 
   def summary
     <<-SUMMARY
@@ -42,13 +45,32 @@ Tracklist:
 #{build_tracklist_string}\n
 SUMMARY
   end
-
-
-
-
-
-
-
-
-
 end
+
+class Track
+  def initialize
+  # call
+  end
+
+
+
+  def summary
+    <<-SUMMARY
+pseduo
+SUMMARY
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+# newline

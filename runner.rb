@@ -1,5 +1,5 @@
 require 'csv'
-require_relative 'album'
+require_relative 'classes'
 
 albums = []
 
