@@ -11,11 +11,9 @@ class Album
 
   def summary
     <<-SUMMARY
-    output
-    #{id}
-    #{title}
-    #{artist}
-    #{tracks}
+    Track id: #{id}
+    Title: #{title}
+    Artist: #{artist}\n
 SUMMARY
   end
 end

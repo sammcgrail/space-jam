@@ -4,7 +4,7 @@ require_relative 'album'
 albums = []
 
 CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row|
-  track = row.to_hash   
+  track = row.to_hash
   album = albums.find { |a| a.id == track[:album_id] }
 
   # if the album hasn't been added to the albums array yet, add it
