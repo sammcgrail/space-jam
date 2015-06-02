@@ -2,14 +2,14 @@ require 'csv'
 require 'pry'
 require_relative 'classes'
 
-tracks_1 = []
+tracks = []
 albums = []
 
 
 CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row|
   track = row.to_hash
 
-  tracks_1 << Track.new(track[:album_id], track[:album_name], track[:title], track[:track_number], track[:duration_ms])
+  tracks << Track.new(track[:album_id], track[:album_name], track[:title], track[:track_number], track[:duration_ms])
   # binding.pry
 end
 
@@ -25,7 +25,7 @@ CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row
   # end
   # if the album hasn't been added to the albums array yet, add it
   if album.nil?
-    album = Album.new(track[:album_id], track[:album_name], track[:artists], tracks_1)
+    album = Album.new(track[:album_id], track[:album_name], track[:artists], tracks)
     albums << album
   end
 
