@@ -1,11 +1,11 @@
 class Album
   attr_accessor :tracks
   attr_reader :id, :title, :artist
-  def initialize(id, title, artist)
+  def initialize(id, title, artist, tracks)
     @id = id
     @title = title
     @artist = artist
-    @tracks = []
+    @tracks = tracks
   end
   def build_tracklist_hash
     tracklist_hash = {}
@@ -48,17 +48,23 @@ SUMMARY
 end
 
 class Track
-  def initialize
-  # call
+  attr_accessor :duration_min
+  attr_reader :album_id, :id, :title, :track_number, :duration_ms
+  def initialize(album_id, id, title, track_number, duration_ms)
+    @album_id = album_id
+    @id = id
+    @title = title
+    @track_number = track_number
+    @duration_ms = duration_ms
+    @duration_min = 0
   end
 
 
 
-  def summary
-    <<-SUMMARY
-pseduo
-SUMMARY
-  end
+
+
+
+
 end
 
 

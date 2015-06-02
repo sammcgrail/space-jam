@@ -1,17 +1,37 @@
 require 'csv'
+require 'pry'
 require_relative 'classes'
 
+tracks = []
 albums = []
+
+
+CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row|
+  track = row.to_hash
+  tracks << Track.new(track[:album_id], track[:album_name], track[:title], track[:track_number], track[:duration_ms] )
+
+end
 
 CSV.foreach('space_jams.csv', headers: true, header_converters: :symbol) do |row|
   track = row.to_hash
   album = albums.find { |a| a.id == track[:album_id] }
+  album_tracks = []
+  tracks.each do |track_object|
+    if track_object.album_id == track[:album_id]
+      album_tracks << track_object
+      binding.pry
+    end
+  end
 
   # if the album hasn't been added to the albums array yet, add it
   if album.nil?
-    album = Album.new(track[:album_id], track[:album_name], track[:artists])
+    album = Album.new(track[:album_id], track[:album_name], track[:artists], album_tracks)
     albums << album
   end
+
+  # if the track hasn't been added to the tracks array yet, add it
+
+
 
   # add the track to the album's @tracks instance variable
   album.tracks << track
