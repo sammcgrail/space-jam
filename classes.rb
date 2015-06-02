@@ -6,9 +6,6 @@ class Album
     @artist = artist
     @tracks = []
   end
-
-
-
   def sum_duration
     album_duration = 0
     tracks.each do |track_object|
@@ -17,15 +14,13 @@ class Album
     album_duration = (album_duration / (60000.0)).round(2)
     album_duration
   end
-
   def build_tracklist_string
     tracklist_string = ""
     tracks.each do |track_object|
-      tracklist_string += "#{track_object.track_number}. #{track_object.title} \n"
+      tracklist_string += "#{track_object.track_number}. #{track_object.title}\n"
     end
     tracklist_string   # make sure to return values in methods
   end
-
   def summary
     <<-SUMMARY
 Album id: #{id}
@@ -48,19 +43,5 @@ class Track
     @track_number = track_number
     @duration_ms = duration_ms
   end
-
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 # newline
