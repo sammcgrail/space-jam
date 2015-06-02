@@ -7,19 +7,23 @@ class Album
     @artist = artist
     @tracks = tracks
   end
-  def build_tracklist_hash
-    tracklist_hash = {}
-    @tracks.each do |track_info|
-      if track_info[:album_id] == id
-        tracklist_hash[track_info[:track_number]] = track_info[:title]
+  def build_tracklist_array
+    tracklist = []
+
+    tracks.each do |track_object|
+      unless track_object.class == Hash
+      if track_object.album_id == id
+        tracklist << track_object
       end
     end
-    tracklist_hash
+    end
+    tracklist
   end
+
   def build_tracklist_string
     tracklist_string = ""
-    build_tracklist_hash.each do |track_number, track_name|
-      tracklist_string += "#{track_number}. #{track_name} \n"
+    build_tracklist_array.each do |track_object|
+      tracklist_string += "#{track_object.track_number}. #{track_object.title} \n"
     end
     tracklist_string   # make sure to return values in methods
   end
@@ -28,20 +32,13 @@ class Album
   #    come back after and sort
   # end
 
-  def get_duration_ms
-    #
-  end
-
-  def convert_duration
-    # convert duration_ms to min
-  end
-
   def summary
     <<-SUMMARY
 Album id: #{id}
-Album Title: #{title}
-Album Artist: #{artist}
-Tracklist:
+Name: #{title}
+Artist(s): #{artist}
+Duration (min.): #{}
+Tracks:
 #{build_tracklist_string}\n
 SUMMARY
   end
@@ -58,13 +55,10 @@ class Track
     @duration_ms = duration_ms
     @duration_min = 0
   end
-
-
-
-
-
-
-
+  def convert_duration
+    duration_min = duration_ms * 1000 / 60 # convert ms to min
+    duration_min
+  end
 end
 
 
