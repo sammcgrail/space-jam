@@ -16,26 +16,30 @@ class Album
         tracklist_hash[track_info[:track_number]] = track_info[:title]
       end
     end
+    tracklist_hash
   end
 
-  def sort_tracklist_hash
-
+  def build_tracklist_string
+    tracklist_string = ""
+    build_tracklist_hash.each do |track_number, track_name|
+      tracklist_string += "#{track_number}. #{track_name} \n"
+    end
+    tracklist_string   # make sure to return values in methods
   end
+  # def sort_tracklist_hash
+  #    come back after and sort
+  # end
 
 
-  # return string of tracknames
-  # iterate through array of hashes
-  # each hash contain one track data
-
-  # if album id =
-  # add track name to tracklist
 
 
   def summary
     <<-SUMMARY
-    Album id: #{id}
-    Album Title: #{title}
-    Album Artist: #{artist}\n
+Album id: #{id}
+Album Title: #{title}
+Album Artist: #{artist}
+Tracklist:
+#{build_tracklist_string}\n
 SUMMARY
   end
 
